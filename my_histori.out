@@ -1,0 +1,187 @@
+[administrator@localhost ~]$ sudo passwd user1
+[sudo] пароль для administrator: 
+Изменение пароля пользователя user1.
+Новый пароль: 
+НЕУДАЧНЫЙ ПАРОЛЬ: Пароль не прошел проверку орфографии - слишком простой
+Повторите ввод нового пароля: 
+Извините, но пароли не совпадают.
+passwd: Ошибка при операциях с маркером проверки подлинности
+[administrator@localhost ~]$ sudo passwd user1
+Изменение пароля пользователя user1.
+Новый пароль: 
+НЕУДАЧНЫЙ ПАРОЛЬ: Пароль не прошел проверку орфографии - слишком простой
+Повторите ввод нового пароля: 
+passwd: данные аутентификации успешно обновлены.
+[administrator@localhost ~]$ su - user1
+Пароль: 
+[user1@localhost ~]$ cat /etc/shadow
+cat: /etc/shadow: Отказано в доступе
+[user1@localhost ~]$ sudo cat /etc/shadow
+
+Мы полагаем, что ваш системный администратор изложил вам основы
+безопасности. Как правило, всё сводится к трём следующим правилам:
+
+    №1) Уважайте частную жизнь других.
+    №2) Думайте, прежде чем что-то вводить.
+    №3) С большой властью приходит большая ответственность.
+
+По соображениям безопасности пароль, который вы введёте, не будет виден.
+
+[sudo] пароль для user1: 
+user1 отсутствует в файле sudoers.
+Администратор был оповещён об этом событии.
+[user1@localhost ~]$ su - administrator
+Пароль: 
+[administrator@localhost ~]$ cp /bin/cat /home/user1/mycat
+cp: не удалось выполнить stat для '/home/user1/mycat': Отказано в доступе
+[administrator@localhost ~]$ sudo cp /bin/cat /home/user1/mycat
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ sudo ls /home/user1/
+mycat
+[administrator@localhost ~]$ sudo ls -l  /home/user1/
+итого 36
+-rwxr-xr-x. 1 root root 36568 ноя 22 19:27 mycat
+[administrator@localhost ~]$ sudo chown root:root /home/user1/mycat
+[administrator@localhost ~]$ sudo ls -l  /home/user1/
+итого 36
+-rwxr-xr-x. 1 root root 36568 ноя 22 19:27 mycat
+[administrator@localhost ~]$ sudo chm
+chmem     chm_http  chmod     
+[administrator@localhost ~]$ sudo chmod u+s /home/user1/mycat
+[administrator@localhost ~]$ sudo ls -l  /home/user1/
+итого 36
+-rwsr-xr-x. 1 root root 36568 ноя 22 19:27 mycat
+[administrator@localhost ~]$ su - user1
+Пароль: 
+[user1@localhost ~]$ /home/user1/mycat /etc/shadow
+root:$y$j9T$PqtdcACvY.s7J6LurbfAlmOH$Hwv9ewGgkCqzk68p3NJKzc/1jVGV2iAfmePRwg5ZHX0::0:99999:7:::
+bin:*:20047:0:99999:7:::
+daemon:*:20047:0:99999:7:::
+adm:*:20047:0:99999:7:::
+lp:*:20047:0:99999:7:::
+sync:*:20047:0:99999:7:::
+shutdown:*:20047:0:99999:7:::
+halt:*:20047:0:99999:7:::
+mail:*:20047:0:99999:7:::
+operator:*:20047:0:99999:7:::
+games:*:20047:0:99999:7:::
+ftp:*:20047:0:99999:7:::
+nobody:*:20047:0:99999:7:::
+dbus:!!:20778::::::
+rtkit:!!:20778::::::
+geoclue:!!:20778::::::
+pipewire:!!:20778::::::
+tss:!!:20778::::::
+systemd-oom:!*:20778::::::
+systemd-resolve:!*:20778::::::
+polkitd:!!:20778::::::
+avahi:!!:20778::::::
+colord:!!:20778::::::
+postfix:!!:20778::::::
+sshd:!!:20778::::::
+gluster:!!:20778::::::
+rpc:!!:20778:0:99999:7:::
+unbound:!!:20778::::::
+openvpn:!!:20778::::::
+nm-openvpn:!!:20778::::::
+sddm:!!:20778::::::
+chrony:!!:20778::::::
+dnsmasq:!!:20778::::::
+nslcd:!!:20778::::::
+tcpdump:!!:20778::::::
+nm-openconnect:!*:20778::::::
+systemd-coredump:!*:20778::::::
+systemd-timesync:!*:20778::::::
+vboxadd:!*:20778::::::
+administrator:$y$j9T$lyMcjgnXW2VVdtk7WR4k3fcB$s.UDhUx/q1GlJFT.OjZvImxm12xREmgtB3y/RDTfU9C::0:99999:7:::
+user1:$y$j9T$WZmT3lkArWiJwrCTGNdX01$9nOYeZhVd66Uun.GWIaZbJ72hZ2jvEskD0dkhMElPd/:20779:0:90:7:::
+[user1@localhost ~]$ sudo visudo
+[sudo] пароль для user1: 
+Попробуйте ещё раз.
+[sudo] пароль для user1: 
+Попробуйте ещё раз.
+[sudo] пароль для user1: 
+sudo: 3 неправильные попытки ввода пароля
+[user1@localhost ~]$ su - administrator
+Пароль: 
+[administrator@localhost ~]$ sudo vi
+vi             view           vigr           vimdiff        vipw           
+via_regs_dump  viewgam        vim            vimtutor       visudo         
+[administrator@localhost ~]$ sudo visudo
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ sudo visudo
+[sudo] пароль для administrator: 
+visudo: /etc/sudoers.tmp не изменён
+[administrator@localhost ~]$ su - user1
+Пароль: 
+[user1@localhost ~]$ sudo date -s "10:10"
+[sudo] пароль для user1: 
+Вс 22 ноя 2026 10:10:00 MSK
+[user1@localhost ~]$ date
+Вс 22 ноя 2026 20:13:29 MSK
+[user1@localhost ~]$ sudo tim
+timage              timedatectl         times               timeshift-gtk       
+time                timeout             timeshift           timeshift-launcher  
+[user1@localhost ~]$ sudo timedatectl set-ntp false 
+Извините, пользователю user1 не разрешено выполнять «/bin/timedatectl set-ntp false» как root на localhost.localdomain.
+[user1@localhost ~]$ su - administrator 
+Пароль: 
+su: Сбой при проверке подлинности
+[user1@localhost ~]$ su - administrator 
+Пароль: 
+[administrator@localhost ~]$ sudo timedatectl set-ntp false
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ su - user1 
+Пароль: 
+[user1@localhost ~]$ sudo date -s "10:10"
+Вс 22 ноя 2026 10:10:00 MSK
+[user1@localhost ~]$ sudo date -s "10:10"
+Вс 22 ноя 2026 10:10:00 MSK
+[user1@localhost ~]$ sudo date -s "10:10"
+Вс 22 ноя 2026 10:10:00 MSK
+[user1@localhost ~]$ sudo date -s "10:10"
+Вс 22 ноя 2026 10:10:00 MSK
+[user1@localhost ~]$ date
+Вс 22 ноя 2026 10:10:02 MSK
+[user1@localhost ~]$ su - administrator 
+Пароль: 
+[administrator@localhost ~]$ sudo cp /bin/cp /home/user1/mycp
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ sudo setc
+setcap      setcifsacl  
+[administrator@localhost ~]$ sudo setc
+setcap      setcifsacl  
+[administrator@localhost ~]$ sudo setcap cap_dac_override+ep /home/user1/mycp
+[administrator@localhost ~]$ getcap /home/user1/mycp
+/home/user1/mycp (Permission denied)
+[administrator@localhost ~]$ sudo getcap /home/user1/mycp
+/home/user1/mycp cap_dac_override=ep
+[administrator@localhost ~]$ su - user1
+Пароль: 
+[user1@localhost ~]$ touch /home/test.txt
+touch: невозможно выполнить touch для '/home/test.txt': Отказано в доступе
+[user1@localhost ~]$ touch /home/user1/test.txt
+[user1@localhost ~]$ nano /home/user1/test.txt
+[user1@localhost ~]$ cp /home/user1/test.txt /home/administrator/
+cp: не удалось выполнить stat для '/home/administrator/test.txt': Отказано в доступе
+[user1@localhost ~]$ /home/user1/mycp /home/user1/test.txt /home/administrator/
+[user1@localhost ~]$ su - administrator 
+Пароль: 
+[administrator@localhost ~]$ ls /home/administrator/
+ test.txt   Видео   Документы   Загрузки   Изображения   Музыка   Общедоступные  'Рабочий стол'   Шаблоны
+[administrator@localhost ~]$ echo "бух. номер 374313"
+бух. номер 374313
+[administrator@localhost ~]$ history > /dz/history.out
+-bash: /dz/history.out: Отказано в доступе
+[administrator@localhost ~]$ sudo history > /dz/history.out
+-bash: /dz/history.out: Отказано в доступе
+[administrator@localhost ~]$ history > ~/history.out
+[administrator@localhost ~]$ sudo mv ~/history.out /dz/
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ stat /home/user1 > ~/stat.out
+[administrator@localhost ~]$ sudo stat /home/user1/mycat >> ~/stat.out 
+[sudo] пароль для administrator: 
+[administrator@localhost ~]$ sudo stat /home/user1/mycp >> ~/stat.out 
+[administrator@localhost ~]$ sudo getcap /home/user1/mycp > ~/getcap.out
+[administrator@localhost ~]$ sudo mv ~/stat.out /dz/
+[administrator@localhost ~]$ sudo mv ~/getcap.out /dz/

@@ -1,0 +1,2 @@
+[administrator@localhost ~]$ ps -eo user,ruid,euid,pid,cmd --sort=euid | awk '$3 == 0 && $2 != 0'
+root      1000     0    1165 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc

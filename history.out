@@ -1,0 +1,27 @@
+    1  lsblk
+    2  sudo groupadd students 
+    3  sudo useradd user1 -u 1234
+    4  sudo usermod -aG students user1 
+    5  sudo chage -M 90 user1
+    6  id user1
+    7  sudo chage -l user1
+    8  sudo find / -xdev -type f -perm /4000 -ls 2>/dev/null
+    9  sudo nano /DZ/setUID.out
+   10  sudo mcdir /DZ
+   11  sudo mkdir /DZ
+   12  sudo mkdir /dz
+   13  sudo touch /dz/setUID.out
+   14  sudo nano /dz/setUID.out 
+   15  ps -eo user,ruid,euid,pid,cmd --sort=euid | awk '$3 == 0 && $2 != 0'
+   16  sudo touch /dz/monitoring_procecces.out
+   17  sudo nano /dz/monitoring_procecces.out 
+   18  sudo cat /ets/shadow
+   19  ls /ets
+   20  sudo cat /etc/shadow
+   21  cat /etc/shadow
+   22  su - user1
+   23  ls /home/administrator/
+   24  echo "бух. номер 374313"
+   25  history > /dz/history.out
+   26  sudo history > /dz/history.out
+   27  history > ~/history.out
